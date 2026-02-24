@@ -1,0 +1,11 @@
+from database import Session, RewardHistory
+session = Session()
+count = session.query(RewardHistory).count()
+pos_ded = session.query(RewardHistory).filter(RewardHistory.deduction > 0).count()
+neg_ded = session.query(RewardHistory).filter(RewardHistory.deduction < 0).count()
+zero_ded = session.query(RewardHistory).filter(RewardHistory.deduction == 0).count()
+print(f"Total: {count}")
+print(f"Positive Deductions: {pos_ded}")
+print(f"Negative Deductions: {neg_ded}")
+print(f"Zero Deductions: {zero_ded}")
+session.close()
